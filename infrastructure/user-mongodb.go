@@ -31,14 +31,14 @@ func NewMongodb(ctx context.Context, uri, database, collection string) *Mongodb 
 }
 
 func (u *Mongodb) Get(ctx context.Context, id string) (*domain.UserEntity, error) {
-	var result *domain.UserEntity
+	var result domain.UserEntity
 	filter := bson.M{"_id": id}
-	err := u.collection.FindOne(ctx, filter).Decode(result)
+	err := u.collection.FindOne(ctx, filter).Decode(&result)
 	if err != nil {
 		return nil, err
 	}
 
-	return result, nil
+	return &result, nil
 }
 
 func (u *Mongodb) GetAll(ctx context.Context) (*[]domain.UserEntity, error) {

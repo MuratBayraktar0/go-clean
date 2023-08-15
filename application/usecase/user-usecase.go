@@ -71,6 +71,7 @@ func (u *userUsecase) Update(ctx context.Context, id string, user domain.UserDTO
 
 func ConvertEntitytoDTO(userEntity domain.UserEntity) domain.UserDTO {
 	return domain.UserDTO{
+		ID:    userEntity.ID,
 		Name:  userEntity.Name,
 		Email: userEntity.Email,
 	}

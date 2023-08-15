@@ -6,11 +6,11 @@ import (
 )
 
 type userRepository struct {
-	db             Database
+	db             UserDatabase
 	contextTimeout context.Context
 }
 
-func NewRepository(timeout context.Context, database Database) *userRepository {
+func NewRepository(timeout context.Context, database UserDatabase) *userRepository {
 	return &userRepository{
 		db:             database,
 		contextTimeout: timeout,
