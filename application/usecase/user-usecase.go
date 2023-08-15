@@ -10,10 +10,10 @@ import (
 
 type userUsecase struct {
 	userRepo       domain.UserRepository
-	contextTimeout time.Duration
+	contextTimeout context.Context
 }
 
-func NewUserUsecase(userRepo domain.UserRepository, timeout time.Duration) *userUsecase {
+func NewUserUsecase(timeout context.Context, userRepo domain.UserRepository) *userUsecase {
 	return &userUsecase{
 		userRepo:       userRepo,
 		contextTimeout: timeout,

@@ -53,7 +53,7 @@ func TestUsecase_Get(t *testing.T) {
 
 	mockRepo.On("Get", mock.Anything, userID).Return(mockEntity, nil)
 
-	usecase := NewUserUsecase(mockRepo, time.Second*5)
+	usecase := NewUserUsecase(context.Background(), mockRepo)
 	ctx := context.Background()
 
 	result, err := usecase.Get(ctx, userID)
@@ -74,7 +74,7 @@ func TestUsecase_GetAll(t *testing.T) {
 
 	mockRepo.On("GetAll", mock.Anything).Return(&mockUsers, nil)
 
-	usecase := NewUserUsecase(mockRepo, time.Second*5)
+	usecase := NewUserUsecase(context.Background(), mockRepo)
 	ctx := context.Background()
 
 	results, err := usecase.GetAll(ctx)
@@ -94,7 +94,7 @@ func TestUsecase_Create(t *testing.T) {
 	mockRepo := &mockUserRepo{}
 	mockRepo.On("Create", mock.Anything, mock.AnythingOfType("domain.UserEntity")).Return(nil)
 
-	usecase := NewUserUsecase(mockRepo, time.Second*5)
+	usecase := NewUserUsecase(context.Background(), mockRepo)
 	ctx := context.Background()
 
 	userDTO := domain.UserDTO{
@@ -120,7 +120,7 @@ func TestUsecase_Update(t *testing.T) {
 
 	mockRepo.On("Update", mock.Anything, mock.AnythingOfType("domain.UserEntity")).Return(nil)
 
-	usecase := NewUserUsecase(mockRepo, time.Second*5)
+	usecase := NewUserUsecase(context.Background(), mockRepo)
 	ctx := context.Background()
 
 	err := usecase.Update(ctx, userID, userDTO)
